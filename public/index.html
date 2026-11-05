@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Accident Response System</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css"></head><body>
+<header><div><div class="brand">🚨 Smart Accident Response</div><div class="sub">Accident • Emergency Vehicle Tracking • Hospital Locator</div></div>
+<button id="sosBtn" class="sos">SOS / EMERGENCY</button></header>
+<main>
+<section class="hero"><div><h1>Report an accident. Find help faster.</h1><p>GPS • Live nearby hospitals • Vehicle matching • Route tracer • ETA • Verification</p></div><div class="status" id="gpsStatus">📍 Detecting location...</div></section>
+
+<section class="grid"><div class="card"><h2>🚑 Report Accident</h2>
+<div class="row"><button id="locateBtn">📍 Use My Location</button><button id="demoBtn" class="secondary">Use Demo Location</button></div>
+<label>Latitude<input id="lat" type="number" step="any" placeholder="GPS latitude"></label>
+<label>Longitude<input id="lon" type="number" step="any" placeholder="GPS longitude"></label>
+<label>Severity<select id="severity"><option>Unknown</option><option>Minor</option><option>Serious</option><option>Critical</option></select></label>
+<label>Description<textarea id="description" placeholder="Describe the accident..."></textarea></label>
+<label class="check"><input id="photo" type="checkbox"> Photo/video evidence available</label>
+<label>Nearby people confirming accident<input id="confirmations" type="number" min="0" value="0"></label>
+<button id="reportBtn" class="primary">🚨 Submit Accident Report</button><div id="reportResult"></div></div>
+<div class="card"><h2>🗺️ Live Response Map</h2><div id="map"></div>
+<div class="legend"><span>🔴 Accident</span><span>🚑 Ambulance</span><span>🚒 Fire</span><span>🚓 Police</span><span>🏥 Hospital</span></div></div></section>
+
+<section id="tracer" class="card tracer hidden"><div class="section-title"><h2>🚑 Vehicle Live Tracer</h2><span class="tag blue" id="traceStatus">En route</span></div>
+<div class="trace-grid"><div><span>Vehicle</span><strong id="traceVehicle">—</strong></div><div><span>Route</span><strong id="traceDistance">—</strong></div><div><span>ETA</span><strong id="traceEta">—</strong></div></div>
+<div class="progress"><div id="traceProgress"></div></div><div class="meta">The ambulance marker is moving along the route toward the accident location.</div></section>
+
+<section id="emergencyDashboard" class="card emergency-dashboard hidden"><div class="section-title"><h2>🚨 Emergency Response Dashboard</h2><span class="tag red">SOS ACTIVE</span></div>
+<div class="emergency-grid"><div class="emergency-box"><span>📍 Accident Location</span><strong id="sosLocation">Capturing...</strong></div>
+<div class="emergency-box"><span>🚑 Nearest Ambulance</span><strong id="sosAmbulance">Finding...</strong></div>
+<div class="emergency-box"><span>🚒 Fire Engine</span><strong id="sosFire">Finding...</strong></div>
+<div class="emergency-box"><span>🚓 Police</span><strong id="sosPolice">Finding...</strong></div>
+<div class="emergency-box"><span>🏥 Nearest Hospital</span><strong id="sosHospital">Finding...</strong></div>
+<div class="emergency-box"><span>✅ Verification</span><strong id="sosVerification">Processing...</strong></div></div>
+<div class="sos-note">Demo emergency dispatch activated. Real government emergency services require authorized integration.</div></section>
+
+<section class="grid lower"><div class="card"><div class="section-title"><h2>🚨 Nearby Emergency Vehicles</h2><button id="refreshVehicles" class="small">Refresh</button></div><div id="vehicles" class="list"></div></div>
+<div class="card"><div class="section-title"><div><h2>🏥 Nearby Hospitals</h2><div id="hospitalSource" class="meta">Loading...</div></div><button id="refreshHospitals" class="small">Refresh</button></div><div id="hospitals" class="list"></div></div></section>
+
+<section class="card"><div class="section-title"><h2>📋 Recent Accident Reports</h2><button id="refreshAccidents" class="small">Refresh</button></div><div id="accidents" class="table-wrap"></div></section>
+</main><footer><strong>Student Project Demo</strong> — Nearby hospital data is fetched from OpenStreetMap when available. Vehicle positions are simulated around the selected GPS location; tracer uses road routing when available.</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="app.js"></script></body></html>

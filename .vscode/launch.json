@@ -1,0 +1,17 @@
+{
+  "version":"0.2.0",
+  "configurations":[{
+    "name":"Smart Accident Response - Chrome",
+    "type":"node",
+    "request":"launch",
+    "program":"${workspaceFolder}/server.js",
+    "cwd":"${workspaceFolder}",
+    "runtimeExecutable":"node",
+    "console":"integratedTerminal",
+    "serverReadyAction":{
+      "pattern":"Smart Accident Response System running at (https?://localhost:[0-9]+)",
+      "uriFormat":"%s",
+      "action":"openExternally"
+    }
+  }]
+}
