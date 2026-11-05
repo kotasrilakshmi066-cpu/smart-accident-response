@@ -170,4 +170,9 @@ app.get("/api/dispatches",(req,res)=>res.json(db.prepare(`SELECT d.*,v.type,v.ve
   FROM dispatches d JOIN vehicles v ON v.id=d.vehicle_id ORDER BY d.created_at DESC`).all()));
 
 app.get("*",(req,res)=>res.sendFile(path.join(__dirname,"public","index.html")));
-app.listen(PORT,()=>console.log(`Smart Accident Response System running at http://localhost:${PORT}`));
+
+if (require.main === module) {
+  app.listen(PORT,()=>console.log(`Smart Accident Response System running at http://localhost:${PORT}`));
+}
+
+module.exports = app;
